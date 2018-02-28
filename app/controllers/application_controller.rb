@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+
   protect_from_forgery with: :exception
 
   before_action :categories, :brands, :count_items
@@ -12,7 +14,7 @@ class ApplicationController < ActionController::Base
 	rescue_from CanCan::AccessDenied do |exception|
 	  respond_to do |format|
 	    format.json { head :forbidden }
-	    format.html { redirect_to main_app.product_url, :alert => "Not authorized!" }
+	    format.html { redirect_to main_app.root_url, :alert => "Not authorized in Admin area!" }
 	  end	  
 	end  
 
@@ -25,7 +27,7 @@ class ApplicationController < ActionController::Base
   end	
 
   def count_items 
-    @line_items = LineItem.all
+    @count = LineItem.count
   end
 
 end

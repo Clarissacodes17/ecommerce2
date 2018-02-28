@@ -24,7 +24,7 @@
         <td><%= number_to_currency(product.price) %></td>
         <td><%= product.quantity %></td>
         <td><%= product.description %></td>
-        <td><%= image_tag product.image.thumb %></td>
+        <td><%= image_tag product.image.url, class: "thumb" %></td>
         <td><%= product.brand %></td>
         <td><% product.rating.times do %>
               <span class="glyphicon glyphicon-star"></span>

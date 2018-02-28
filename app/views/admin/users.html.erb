@@ -1,0 +1,24 @@
+<center>
+<h1>Admin Area</h1>
+<h3>List of Users</h3>
+</center>
+
+
+<div class="container">
+	<% @users.each do |user| %>
+		<div class="row">
+			<div class="well"
+			<p><%= user.email %></p>
+			<p><%= user.role %></p>
+		</div>
+
+			<%= form_tag edit_users_path do %>
+				<%= hidden_field_tag :id, user.id %>
+				<%= select_tag(:role, options_for_select([ "admin", "guest" ]),:prompt => "Please select")%>
+				<%= submit_tag "Edit User", class: 'btn btn-success' %>
+			<% end %>
+		</div>
+	</div>
+
+		<% end %>
+	</div>

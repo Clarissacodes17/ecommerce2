@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'users' => 'admin#users'
+
+  post  'edit_users' => 'admin#edit_users'
+
   post 'add_to_cart' => 'cart#add_to_cart'
 
   get 'view_order' => 'cart#view_order'

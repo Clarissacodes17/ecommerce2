@@ -70,19 +70,25 @@
           
   				<% end %>
             <li></li>
+            <!-- If you are not signed in, gives you links to sign up or sign in -->
             <% if !user_signed_in? %>
             <li><%= link_to "Sign In", user_session_path  %></li><li><%= link_to 'Sign Up', new_user_registration_path %></li>
-            <% end %>
+            <% end %> 
 
+
+         <!-- If user signed in and is an admin, they have access to Admin dropdown -->
+          <% if user_signed_in? && current_user.role == "admin" %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                
-                <li></li>
-              
-                <li></li>
+
+                <li><%= link_to "Inventory", products_path %></li>
+
+                <li><%= link_to "Users Page", users_path %></li>
+
               </ul>
             </li>
+           <% end %>
           
               
         
@@ -108,8 +114,14 @@
   	</div> 
 
     <div class="container">
+      <% if alert %>
+        <h3><%= alert %></h3>
+      <% end %>
+    </div>
+
+    <div class="container">
       <div class="cart">
-        <% if @line_items.length == 0 || @line_items.length == nil  %>
+        <% if count_items == 0 %>
           <p><%= link_to "View Cart", view_order_path %><%= image_tag "empty_cart.png", class: 'cart-pic'%></p>
         <% else %>
           <p><%= link_to "View Cart", view_order_path %> <%= image_tag "full_cart.png", class: "cart-pic" %></p>

@@ -12,9 +12,9 @@ class Ability
     #   end
 
         if user.admin?
-            can :manage, Product
+            can :manage, :all
         elsif user.guest?
-            can :show, Product   
+            can :read, :all  
         end    
     #
     # The first argument to `can` is the action you are giving the user
