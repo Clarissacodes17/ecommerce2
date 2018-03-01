@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'checkout' => 'cart#checkout'
 
+  post 'order_complete' => 'cart#order_complete'
+
   root 'storefront#all_items'
 
   get 'categorical' => 'storefront#items_by_category'
